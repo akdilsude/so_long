@@ -1,0 +1,88 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   coordinats.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/31 11:20:34 by sakdil            #+#    #+#             */
+/*   Updated: 2025/03/31 12:59:26 by sakdil           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "so_long.h"
+
+static void	player_xy(t_game *list)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	x = 0;
+	while (list->map[y])
+	{
+		x = 0;
+		while (list->map[y][x])
+		{
+			if (list->map[y][x] == 'P')
+			{
+				list->player_x = x;
+				list->player_y = y;
+				return ;
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
+static void	exit_xy(t_game *list)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	x = 0;
+	while (list->map[y])
+	{
+		x = 0;
+		while (list->map[y][x])
+		{
+			if (list->map[y][x] == 'E')
+			{
+				list->exit_x = x;
+				list->exit_y = y;
+				return ;
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
+void	coordinats_xy(t_game *list)
+{
+	int	x;
+	int	y;
+	int	prev_x;
+
+	prev_x = -1;
+	y = 0;
+	while (list->map[y] != NULL)
+	{
+		x = 0;
+		while (list->map[y][x] != '\0')
+			x++;
+		if (prev_x != -1 && x != prev_x)
+		{
+			write(1, "Error: Unequal row lengths\n", 27);
+			free_exit(list);
+		}
+		prev_x = x;
+		y++;
+	}
+	list->x = x;
+	list->y = y;
+	player_xy(list);
+	exit_xy(list);
+}
