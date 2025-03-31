@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:18:29 by sakdil            #+#    #+#             */
-/*   Updated: 2025/03/31 22:00:23 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/03/31 22:59:58 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,5 @@ void	game_start(t_game *list);
 void	main_finish(t_game *list);
 void	add_images(t_game *list);
 void	display_map(t_game *list);
-
 
 #endif

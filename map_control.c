@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:20:39 by sakdil            #+#    #+#             */
-/*   Updated: 2025/03/31 17:49:31 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/03/31 23:00:11 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	empty_line_control(t_game *list)
 		{
 			write(1, "Error: Invalid mapn\n", 20);
 			free_exit(list);
-		}	
+		}
 		i++;
 	}
 }

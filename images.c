@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 20:34:31 by sakdil            #+#    #+#             */
-/*   Updated: 2025/03/31 22:19:57 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/03/31 23:05:55 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	add_images(t_game *list)
 {
-    int	x;
+	int	x;
 	int	y;
-	
+
 	list->p_img = mlx_xpm_file_to_image(list->mlx, "images/p.xpm", &x, &y);
 	list->e_img = mlx_xpm_file_to_image(list->mlx, "images/e.xpm", &x, &y);
 	list->c_img = mlx_xpm_file_to_image(list->mlx, "images/c.xpm", &x, &y);
@@ -26,39 +26,38 @@ void	add_images(t_game *list)
 		|| !list->wall_img)
 	{
 		write(1, "Error\n", 6);
-		free_exit(list);		
+		free_exit(list);
 	}
 }
 
-static void place_images(t_game *list, char c, int x, int y)
+static void	place_images(t_game *list, char c, int x, int y)
 {
-    if (c == '0')
-        mlx_put_image_to_window(list->mlx, list->win, list->ground_img, x, y);
-    else if (c == '1')
-        mlx_put_image_to_window(list->mlx, list->win, list->wall_img, x, y);
-    else if (c == 'P')
-        mlx_put_image_to_window(list->mlx, list->win, list->p_img, x, y);
-    else if (c == 'C')
-        mlx_put_image_to_window(list->mlx, list->win, list->c_img, x, y);
-    else if (c == 'E')
-        mlx_put_image_to_window(list->mlx, list->win, list->e_img, x, y);
+	if (c == '0')
+		mlx_put_image_to_window(list->mlx, list->win, list->ground_img, x, y);
+	else if (c == '1')
+		mlx_put_image_to_window(list->mlx, list->win, list->wall_img, x, y);
+	else if (c == 'P')
+		mlx_put_image_to_window(list->mlx, list->win, list->p_img, x, y);
+	else if (c == 'C')
+		mlx_put_image_to_window(list->mlx, list->win, list->c_img, x, y);
+	else if (c == 'E')
+		mlx_put_image_to_window(list->mlx, list->win, list->e_img, x, y);
 }
 
 void	display_map(t_game *list)
 {
-	int x;
-    int y;
+	int	x;
+	int	y;
 
-    y = 0;
-    while (y < list->y)
-    {
-        x = 0;
-        while (x < list->x)
-        {
-            place_images(list, list->map[y][x], x * 64, y * 64);
-            x++;
-        }
-        y++;
-    }
+	y = 0;
+	while (y < list->y)
+	{
+		x = 0;
+		while (x < list->x)
+		{
+			place_images(list, list->map[y][x], x * 64, y * 64);
+			x++;
+		}
+		y++;
+	}
 }
-

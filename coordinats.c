@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 11:20:34 by sakdil            #+#    #+#             */
-/*   Updated: 2025/03/31 17:39:54 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/03/31 23:00:48 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ bool	move_control(t_game *list)
 		x = 0;
 		while (list->temp[y][x])
 		{
-			if ((list->map[y][x] == 'E' || list->map[y][x] == 'C') 
+			if ((list->map[y][x] == 'E' || list->map[y][x] == 'C')
 				&& list->temp[y][x] != 'F')
 				return (true);
 			x++;
@@ -110,7 +110,7 @@ bool	move_control(t_game *list)
 
 void	ft_fill_flood(t_game *list, int x, int y)
 {
-	if (x < 0 || y < 0 || y >= list->y || x >= list->x 
+	if (x < 0 || y < 0 || y >= list->y || x >= list->x
 		|| list->temp[y][x] == '1' || list->temp[y][x] == 'F')
 		return ;
 	list->temp[y][x] = 'F';
