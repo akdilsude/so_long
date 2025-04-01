@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:20:39 by sakdil            #+#    #+#             */
-/*   Updated: 2025/03/31 23:00:11 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/04/02 00:20:30 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ void	open_map(char *argv, t_game *list)
 	empty_line_control(list);
 	list->map = ft_split(list->line_map, '\n');
 	list->temp = ft_split(list->line_map, '\n');
-	free(list->line_map);
 	if (!list->map || !list->temp)
 	{
 		write(1, "Error\n", 6);

@@ -6,13 +6,13 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:09:20 by sakdil            #+#    #+#             */
-/*   Updated: 2025/03/31 09:10:03 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/04/02 01:12:36 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_len(const char *s)
 {
 	size_t	i;
 
@@ -36,7 +36,7 @@ static size_t	ft_strlcpy(char *dst, const char *src, size_t n)
 		}
 		dst[i] = '\0';
 	}
-	return (ft_strlen(src));
+	return (ft_len(src));
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -45,7 +45,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (NULL);
-	if (len == 0 || start >= ft_strlen(s))
+	if (len == 0 || start >= ft_len(s))
 	{
 		str = (char *)malloc(sizeof(char));
 		if (!str)
@@ -54,8 +54,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	else
 	{
-		if ((ft_strlen(s) - start) < len)
-			len = ft_strlen(s) - start;
+		if ((ft_len(s) - start) < len)
+			len = ft_len(s) - start;
 		str = (char *)malloc((sizeof(char) * len) + 1);
 		if (!str)
 			return (NULL);

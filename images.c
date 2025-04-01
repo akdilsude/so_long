@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 20:34:31 by sakdil            #+#    #+#             */
-/*   Updated: 2025/03/31 23:05:55 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/04/02 00:47:47 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,30 @@ void	display_map(t_game *list)
 			x++;
 		}
 		y++;
+	}
+}
+
+bool	is_move_valid(t_game *list, int new_x, int new_y)
+{
+	if (new_x < 0 || new_x >= list->x || new_y < 0 || new_y >= list->y)
+		return (false);
+	if (list->map[new_y][new_x] == '1')
+		return (false);
+	return (true);
+}
+
+void	build_window(t_game *list, int height, int width)
+{
+	list->mlx = mlx_init();
+	if (!list->mlx)
+	{
+		write(1, "Error: MLX build failed\n", 23);
+		free_exit(list);
+	}
+	list->win = mlx_new_window(list->mlx, width, height, "so_long");
+	if (!list->win)
+	{
+		write(1, "Error: Window creation failed\n", 30);
+		free_exit(list);
 	}
 }

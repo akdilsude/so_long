@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:52:19 by sakdil            #+#    #+#             */
-/*   Updated: 2025/03/31 15:22:01 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/04/02 01:12:08 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char	*ft_strjoin(char *s1, char *s2)
 	}
 	if (!s1 || !s2)
 		return (NULL);
-	s3 = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	s3 = (char *)malloc(ft_len(s1) + ft_len(s2) + 1);
 	if (!s3)
 		return (NULL);
 	i = -1;

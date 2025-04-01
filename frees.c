@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:52:08 by sakdil            #+#    #+#             */
-/*   Updated: 2025/03/31 22:28:05 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/04/02 00:43:49 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,38 @@ void	double_free(char **str)
 	int	i;
 
 	i = -1;
+	if (!str)
+		return ;
 	while (str[++i])
+	{
 		free(str[i]);
+		str[i] = NULL;
+	}
 	free(str);
+}
+
+static void	continue_free_exit(t_game *list)
+{
+	if (list->line_map)
+	{
+		free(list->line_map);
+		list->line_map = NULL;
+	}
+	if (list->fd > 0)
+	{
+		close(list->fd);
+		list->fd = 0;
+	}
+	if (list->map)
+	{
+		double_free(list->map);
+		list->map = NULL;
+	}
+	if (list->temp)
+	{
+		double_free(list->temp);
+		list->temp = NULL;
+	}
 }
 
 void	free_exit(t_game *list)
@@ -33,14 +62,8 @@ void	free_exit(t_game *list)
 	list->exit_y = 0;
 	list->x = 0;
 	list->y = 0;
-	if (list->line_map)
-		free(list->line_map);
-	if (list->fd)
-		close(list->fd);
-	if (list->map)
-		double_free(list->map);
-	if (list->temp)
-		double_free(list->temp);
+	continue_free_exit(list);
+	free(list);
 	exit(1);
 }
 
@@ -66,4 +89,6 @@ void	game_edit(t_game *list)
 	list->player_y = 0;
 	list->exit_x = 0;
 	list->exit_y = 0;
+	list->move_count = 0;
+	list->exit = false;
 }

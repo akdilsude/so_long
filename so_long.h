@@ -6,11 +6,9 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:18:29 by sakdil            #+#    #+#             */
-/*   Updated: 2025/03/31 22:59:58 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/04/02 01:26:06 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//exit(0) veya exit(1) bak
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
@@ -18,6 +16,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include "minilibx-linux/mlx.h"
+# include "ft_printf/ft_printf.h"
 # include <stdbool.h>
 # include <stdlib.h>
 
@@ -42,17 +41,19 @@ typedef struct game
 	int		player_y;
 	int		exit_x;
 	int		exit_y;
+	int		move_count;
 	void	*p_img;
 	void	*e_img;
 	void	*c_img;
 	void	*wall_img;
 	void	*ground_img;
+	bool	exit;
 }	t_game;
 
 char	*ft_get_read(int fd);
 void	name_control(char *str, t_game *list);
 void	open_map(char *argv, t_game *list);
-size_t	ft_strlen(const char *s);
+size_t	ft_len(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	**ft_split(char const *s, char c);
 void	free_exit(t_game *list);
@@ -65,5 +66,7 @@ void	game_start(t_game *list);
 void	main_finish(t_game *list);
 void	add_images(t_game *list);
 void	display_map(t_game *list);
+bool	is_move_valid(t_game *list, int new_x, int new_y);
+void	build_window(t_game *list, int height, int width);
 
 #endif

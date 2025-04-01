@@ -1,34 +1,42 @@
-SRCS = checkers.c control_ops.c graphic_ops.c graphic_ops2.c map_checkers.c map_checkers2.c map_ops.c so_long.c get_next_line.c get_next_line_utils.c
-OBJS = $(SRCS:.c=.o)
-NAME = so_long
-FT_PRINTF = ft_printf/libftprintf.a
-LIBFT = libft/libft.a
-MINILIBX_DIR = minilibx-linux
-MINILIBX = minilibx-linux/libmlx.a
-LFLAGS = -Lminilibx-linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm
-CFLAGS = -Wall -Wextra -Werror
+SRCS			=	coordinats.c	\
+					frees.c			\
+					ft_split.c		\
+					ft_substr.c		\
+					game.c			\
+					images.c		\
+					main.c			\
+					map_control.c	\
+					map_read.c		\
+
+OBJS			=	$(SRCS:.c=.o)
+RM				=	rm -f
+CFLAGS			=	-Wall -Wextra -Werror
+CC 				=	cc
+MINILIBX_DIR	=	minilibx-linux
+MINILIBX 		=	$(MINILIBX_DIR)/libmlx.a
+LFLAGS 			=	-L$(MINILIBX_DIR) -lmlx -L/lib/x86_64-linux-gnu -lXext -lX11 -lm -lbsd
+FT_PRINTF_DIR = ft_printf
+FT_PRINTF = $(FT_PRINTF_DIR)/libftprintf.a
+NAME			=	so_long
 
 all: $(NAME)
 
 $(FT_PRINTF):
-	@make -C ft_printf
-
-$(LIBFT):
-	@make -C libft
+	@make -C $(FT_PRINTF_DIR)
 
 $(MINILIBX):
 	@make -C $(MINILIBX_DIR)
-$(NAME): $(OBJS) $(FT_PRINTF) $(LIBFT) $(MINILIBX)
-	cc $(CFLAGS) $(LFLAGS)  $(OBJS) $(FT_PRINTF) $(LIBFT) $(MINILIBX) -o so_long
+
+$(NAME): $(OBJS) $(FT_PRINTF) $(MINILIBX)
+	$(CC) $(CFLAGS) $(OBJS) $(FT_PRINTF) $(MINILIBX) $(LFLAGS) -o $(NAME)
+
 clean:
-	rm -rf *.o
-	@make -C ft_printf clean
-	@make -C libft clean
+	$(RM) $(OBJS)
+	@make -C $(FT_PRINTF_DIR) clean
 
 fclean: clean
-	rm -rf so_long
-	@make -C ft_printf fclean
-	@make -C libft fclean
+	$(RM) $(NAME)
+	@make -C $(FT_PRINTF_DIR) fclean
 	@make -C $(MINILIBX_DIR) clean
 
 re: fclean all

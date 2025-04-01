@@ -6,49 +6,78 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 18:30:27 by sakdil            #+#    #+#             */
-/*   Updated: 2025/03/31 23:05:31 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/04/02 01:07:54 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	build_window(t_game *list, int height, int width)
-{
-	list->mlx = mlx_init();
-	if (!list->mlx)
-	{
-		write(1, "Error: MLX build failed\n", 23);
-		free_exit(list);
-	}
-	list->win = mlx_new_window(list->mlx, width, height, "so_long");
-	if (!list->win)
-	{
-		write(1, "Error: Window creation failed\n", 30);
-		free_exit(list);
-	}
-}
-
-static bool	is_move_valid(t_game *list, int new_x, int new_y)
-{
-	if (new_x < 0 || new_x >= list->x || new_y < 0 || new_y >= list->y)
-		return (false);
-	if (list->map[new_y][new_x] == '1')
-		return (false);
-	return (true);
-}
-
-static int	exit_game(t_game *list)
+static void	continue_exit_game(t_game *list)
 {
 	if (list->win)
+	{
 		mlx_destroy_window(list->mlx, list->win);
+		list->win = NULL;
+	}
 	if (list->mlx)
 	{
 		mlx_destroy_display(list->mlx);
 		free(list->mlx);
+		list->mlx = NULL;
 	}
+	write(1, "Exit from the game\n", 19);
+}
+
+static int	exit_game(t_game *list)
+{
+	if (list->p_img)
+		mlx_destroy_image(list->mlx, list->p_img);
+	if (list->c_img)
+		mlx_destroy_image(list->mlx, list->c_img);
+	if (list->e_img)
+		mlx_destroy_image(list->mlx, list->e_img);
+	if (list->wall_img)
+		mlx_destroy_image(list->mlx, list->wall_img);
+	if (list->ground_img)
+		mlx_destroy_image(list->mlx, list->ground_img);
+	list->p_img = NULL;
+	list->c_img = NULL;
+	list->e_img = NULL;
+	list->wall_img = NULL;
+	list->ground_img = NULL;
+	continue_exit_game(list);
 	main_finish(list);
 	exit(0);
 	return (0);
+}
+
+static void	continue_key_control(t_game *list, int new_x, int new_y)
+{
+	if (is_move_valid(list, new_x, new_y))
+	{
+		list->map[list->player_y][list->player_x] = '0';
+		if (list->exit == true)
+		{
+			list->map[list->player_y][list->player_x] = 'E';
+			list->exit = false;
+		}
+		list->player_x = new_x;
+		list->player_y = new_y;
+		if (list->map[list->player_y][list->player_x] == 'E'
+			&& list->c_count == 0)
+		{
+			write(1, "You won\n", 8);
+			exit_game(list);
+		}
+		if (list->map[new_y][new_x] == 'E')
+			list->exit = true;
+		if (list->map[new_y][new_x] == 'C')
+			list->c_count--;
+		list->map[new_y][new_x] = 'P';
+		list->move_count++;
+		ft_printf("Your step count: %d\n", list->move_count);
+		display_map(list);
+	}
 }
 
 static int	key_control(int keycode, t_game *list)
@@ -60,22 +89,16 @@ static int	key_control(int keycode, t_game *list)
 	new_y = list->player_y;
 	if (keycode == 65307)
 		exit_game(list);
-	if (keycode == 119)
+	else if (keycode == 119)
 		new_y--;
-	if (keycode == 115)
+	else if (keycode == 115)
 		new_y++;
-	if (keycode == 97)
+	else if (keycode == 97)
 		new_x--;
-	if (keycode == 100)
+	else if (keycode == 100)
 		new_x++;
-	if (is_move_valid(list, new_x, new_y))
-	{
-		list->map[list->player_y][list->player_x] = '0';
-		list->player_x = new_x;
-		list->player_y = new_y;
-		list->map[new_y][new_x] = 'P';
-		display_map(list);
-	}
+	if (keycode == 119 || keycode == 115 || keycode == 97 || keycode == 100)
+		continue_key_control(list, new_x, new_y);
 	return (0);
 }
 
