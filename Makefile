@@ -7,6 +7,7 @@ SRCS			=	coordinats.c	\
 					main.c			\
 					map_control.c	\
 					map_read.c		\
+					game_close.c	\
 
 OBJS			=	$(SRCS:.c=.o)
 RM				=	rm -f

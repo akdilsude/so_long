@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 11:20:34 by sakdil            #+#    #+#             */
-/*   Updated: 2025/03/31 23:00:48 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/04/02 12:21:05 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	coordinats_xy(t_game *list)
 			x++;
 		if (prev_x != -1 && x != prev_x)
 		{
-			write(1, "Error: Unequal row lengths\n", 27);
+			write(1, "Error\nMap is not rectangular.\n", 31);
 			free_exit(list);
 		}
 		prev_x = x;

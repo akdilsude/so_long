@@ -6,14 +6,35 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:00:50 by sakdil            #+#    #+#             */
-/*   Updated: 2025/04/02 00:45:05 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/04/02 14:32:16 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+static void	finish_main(t_game *list)
+{
+	if (list->w_img)
+	{
+		mlx_destroy_image(list->mlx, list->w_img);
+	}
+	if (list->g_img)
+	{
+		mlx_destroy_image(list->mlx, list->g_img);
+	}
+	if (list->win)
+	{
+		mlx_destroy_window(list->mlx, list->win);
+	}
+}
+
 static void	continue_main_finish(t_game *list)
 {
+	if (list->mlx)
+	{
+		mlx_destroy_display(list->mlx);
+		free(list->mlx);
+	}
 	if (list->line_map)
 	{
 		free(list->line_map);
@@ -47,6 +68,19 @@ void	main_finish(t_game *list)
 	list->exit_y = 0;
 	list->x = 0;
 	list->y = 0;
+	if (list->p_img)
+	{
+		mlx_destroy_image(list->mlx, list->p_img);
+	}
+	if (list->c_img)
+	{
+		mlx_destroy_image(list->mlx, list->c_img);
+	}
+	if (list->e_img)
+	{
+		mlx_destroy_image(list->mlx, list->e_img);
+	}
+	finish_main(list);
 	continue_main_finish(list);
 	free(list);
 }
@@ -65,14 +99,14 @@ int	main(int argc, char **argv)
 		open_map(argv[1], list);
 		if (list->x > 40 || list->y > 21)
 		{
-			write(1, "Error: Wrong size\n", 18);
+			write(1, "Error\nMap size exceeds limits (max 40x21).\n", 44);
 			free_exit(list);
 		}
 		game_start(list);
 	}
 	else
 	{
-		write(1, "Error: Bad inputs\n", 18);
+		write(1, "Error\nInvalid arguments.\n", 25);
 		main_finish(list);
 	}
 	return (0);

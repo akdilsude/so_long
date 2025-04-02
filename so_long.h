@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:18:29 by sakdil            #+#    #+#             */
-/*   Updated: 2025/04/02 01:26:06 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/04/02 14:32:23 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ typedef struct game
 	void	*p_img;
 	void	*e_img;
 	void	*c_img;
-	void	*wall_img;
-	void	*ground_img;
+	void	*w_img;
+	void	*g_img;
 	bool	exit;
 }	t_game;
 
@@ -68,5 +68,7 @@ void	add_images(t_game *list);
 void	display_map(t_game *list);
 bool	is_move_valid(t_game *list, int new_x, int new_y);
 void	build_window(t_game *list, int height, int width);
+int		close_window(t_game *list);
+int		exit_game(t_game *list, int win_condition);
 
 #endif
