@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:20:39 by sakdil            #+#    #+#             */
-/*   Updated: 2025/04/02 13:33:36 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/04/03 16:43:54 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,13 @@ void	open_map(char *argv, t_game *list)
 	list->fd = open(argv, O_RDONLY);
 	if (list->fd < 0)
 	{
-		write(1, "Error\nCannot open map file.\n", 29);
+		write(1, "Error\nCannot open map file.\n", 28);
 		free_exit(list);
 	}
 	list->line_map = ft_get_read(list->fd);
 	if (!list->line_map)
 	{
-		write(1, "Error\nFailed to read map file.\n", 32);
+		write(1, "Error\nFailed to read map file.\n", 31);
 		free_exit(list);
 	}
 	close(list->fd);
