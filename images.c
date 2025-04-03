@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 20:34:31 by sakdil            #+#    #+#             */
-/*   Updated: 2025/04/02 14:32:00 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/04/03 16:40:51 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ void	add_images(t_game *list)
 	int	y;
 
 	list->p_img = mlx_xpm_file_to_image(list->mlx, "textures/p.xpm", &x, &y);
-	list->e_img = mlx_xpm_file_to_image(list->mlx, "textures/e.xpm", &x, &y);
+	list->e_img = mlx_xpm_file_to_image(list->mlx, "textures/t.xpm", &x, &y);
 	list->c_img = mlx_xpm_file_to_image(list->mlx, "textures/c.xpm", &x, &y);
 	list->g_img = mlx_xpm_file_to_image(list->mlx, "textures/g.xpm", &x, &y);
 	list->w_img = mlx_xpm_file_to_image(list->mlx, "textures/w.xpm", &x, &y);
 	if (!list->p_img || !list->e_img || !list->c_img || !list->g_img
 		|| !list->w_img)
 	{
-		write(1, "Error\nFailed to load game images.\n", 35);
+		write(1, "Error\nFailed to load game images.\n", 34);
 		free_exit(list);
 	}
 }
@@ -82,7 +82,7 @@ void	build_window(t_game *list, int height, int width)
 	list->win = mlx_new_window(list->mlx, width, height, "so_long");
 	if (!list->win)
 	{
-		write(1, "Error\nFailed to create window.\n", 32);
+		write(1, "Error\nFailed to create window.\n", 31);
 		free_exit(list);
 	}
 }
