@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 20:34:31 by sakdil            #+#    #+#             */
-/*   Updated: 2025/04/03 16:40:51 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/04/03 16:55:06 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	add_images(t_game *list)
 	int	y;
 
 	list->p_img = mlx_xpm_file_to_image(list->mlx, "textures/p.xpm", &x, &y);
-	list->e_img = mlx_xpm_file_to_image(list->mlx, "textures/t.xpm", &x, &y);
+	list->e_img = mlx_xpm_file_to_image(list->mlx, "textures/e.xpm", &x, &y);
 	list->c_img = mlx_xpm_file_to_image(list->mlx, "textures/c.xpm", &x, &y);
 	list->g_img = mlx_xpm_file_to_image(list->mlx, "textures/g.xpm", &x, &y);
 	list->w_img = mlx_xpm_file_to_image(list->mlx, "textures/w.xpm", &x, &y);
@@ -76,7 +76,7 @@ void	build_window(t_game *list, int height, int width)
 	list->mlx = mlx_init();
 	if (!list->mlx)
 	{
-		write(1, "Error\nMLX build failed\n", 23);
+		write(1, "Error\nMLX build failed.\n", 24);
 		free_exit(list);
 	}
 	list->win = mlx_new_window(list->mlx, width, height, "so_long");

@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:00:50 by sakdil            #+#    #+#             */
-/*   Updated: 2025/04/03 16:23:59 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/04/03 16:50:33 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	main(int argc, char **argv)
 
 	list = (t_game *)malloc(sizeof(t_game));
 	if (!list)
-		return (write(1, "Error\n", 6), 0);
+		return (write(1, "Error\nMalloc failed\n", 20), 0);
 	game_edit(list);
 	if (argc == 2 && argv[1] && argv[1][0] != '.')
 	{
@@ -99,7 +99,7 @@ int	main(int argc, char **argv)
 		open_map(argv[1], list);
 		if (list->x > 40 || list->y > 21)
 		{
-			write(1, "Error\nMap size exceeds limits (max 40x21).\n", 44);
+			write(1, "Error\nMap size exceeds limits (max 40x21).\n", 43);
 			free_exit(list);
 		}
 		game_start(list);
