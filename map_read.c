@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:52:19 by sakdil            #+#    #+#             */
-/*   Updated: 2025/04/02 15:01:41 by sakdil           ###   ########.fr       */
+/*   Updated: 2025/04/03 16:28:57 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ void	name_control(char *str, t_game *list)
 		else
 			break ;
 	}
-	if ((str[i] == '.' && str[i - 1] == '/') || (ft_strcmp(str + i, ".ber") == 1))
+	if ((str[i] == '.' && str[i - 1] == '/')
+		|| (ft_strcmp(str + i, ".ber") == 1))
 	{
 		write(1, "Error\nInvalid map file extension.\n", 34);
 		free_exit(list);
