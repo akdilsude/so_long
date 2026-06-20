@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 18:30:27 by sakdil            #+#    #+#             */
-/*   Updated: 2025/04/02 14:09:11 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/06/20 12:22:21 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,13 @@ static void	continue_key_control(t_game *list, int new_x, int new_y)
 	}
 }
 
-static int	key_control(int keycode, t_game *list)
+static int	key_control(int keycode, void *param)
 {
+	t_game  *list;
 	int	new_x;
 	int	new_y;
 
+	list = (t_game *)param;
 	new_x = list->player_x;
 	new_y = list->player_y;
 	if (keycode == 65307)

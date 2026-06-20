@@ -6,7 +6,7 @@
 /*   By: sakdil <sakdil@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:18:29 by sakdil            #+#    #+#             */
-/*   Updated: 2025/04/07 15:04:31 by sakdil           ###   ########.fr       */
+/*   Updated: 2026/06/20 12:15:16 by sakdil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <fcntl.h>
 # include <unistd.h>
-# include "minilibx-linux/mlx.h"
-# include "ft_printf/ft_printf.h"
+# include "mlx.h"
+# include "ft_printf.h"
 # include <stdbool.h>
 # include <stdlib.h>
 
