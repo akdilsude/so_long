@@ -20,7 +20,7 @@ This project relies on the `minilibx-linux` graphics library, which is included 
 
 1. Clone the repository with its submodules:
 ```bash
-git clone --recurse-submodules <your-repo-link>
+git clone --recurse-submodules <https://github.com/akdilsude/so_long.git>
 cd so_long
 ```
 *(If you already cloned it without submodules, run: `git submodule update --init`)*
@@ -32,7 +32,7 @@ make
 
 3. Run the game with a valid map:
 ```bash
-./so_long maps/map.ber
+./so_long maps/map1.ber
 ```
 
 ## Controls
